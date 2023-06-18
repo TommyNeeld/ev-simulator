@@ -47,6 +47,7 @@ app = Dash(
     title="Axle EV Simulator",
     external_stylesheets=[dbc.themes.DARKLY, settings.CUSTOM_CSS],
     use_pages=True,
+    suppress_callback_exceptions=True,
 )
 
 # Updating the Flask Server configuration with Secret Key to encrypt the user session cookie
