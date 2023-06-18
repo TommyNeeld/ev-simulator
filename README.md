@@ -1,6 +1,6 @@
-# axle-ev-sim
+# EV Plug-in Simulator
 
-Electrical Vehicle Simulation for Axle Energy
+Electrical Vehicle Plug-in Simulation for Axle Energy
 
 ## App
 
