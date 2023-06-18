@@ -8,6 +8,6 @@ See `axle/app/README.md` for instructions on running the app locally or in Docke
 
 ## Analysis
 
-See `NOTES.md` for notes on the analysis and the `notebooks` directory for exploration.
+See `NOTES.md` for notes on the analysis and the `notebooks` directory for messy exploration bits and bobs.
 
 

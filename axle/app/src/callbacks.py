@@ -138,6 +138,7 @@ def callbacks(app):
         group_labels = []
         for group in USER_GROUPS:
             ave_samples = []
+            plug_in_times_group[group] = {}
             for _ in range(no_of_iterations):
                 samples = run_monte_carlo(
                     no_of_users=int(no_of_users * USER_GROUPS[group]["proportion"]),
@@ -149,7 +150,8 @@ def callbacks(app):
                 plug_in_times.append(samples)
                 group_labels.append(group)
                 ave_samples.append(samples)
-            plug_in_times_group[group] = np.mean(ave_samples, axis=0)
+            plug_in_times_group[group]["mean"] = np.mean(ave_samples, axis=0)
+            plug_in_times_group[group]["std"] = np.std(ave_samples, axis=0)
 
         metric = "EV plug-in time"
         fig_pi = distributions(
@@ -165,6 +167,7 @@ def callbacks(app):
         plug_out_times_group = {}
         group_labels = []
         for group in USER_GROUPS:
+            plug_out_times_group[group] = {}
             ave_samples = []
             for _ in range(no_of_iterations):
                 samples = run_monte_carlo(
@@ -177,7 +180,8 @@ def callbacks(app):
                 plug_out_times.append(samples)
                 group_labels.append(group)
                 ave_samples.append(samples)
-            plug_out_times_group[group] = np.mean(ave_samples, axis=0)
+            plug_out_times_group[group]["mean"] = np.mean(ave_samples, axis=0)
+            plug_out_times_group[group]["std"] = np.std(ave_samples, axis=0)
 
         metric = "EV plug-out time"
         fig_po = distributions(
@@ -194,6 +198,7 @@ def callbacks(app):
         plug_in_soc_group = {}
         group_labels = []
         for group in USER_GROUPS:
+            plug_in_soc_group[group] = {}
             ave_samples = []
             for _ in range(no_of_iterations):
                 samples = run_monte_carlo(
@@ -206,7 +211,8 @@ def callbacks(app):
                 plug_in_soc.append(samples)
                 group_labels.append(group)
                 ave_samples.append(samples)
-            plug_in_soc_group[group] = np.mean(ave_samples, axis=0)
+            plug_in_soc_group[group]["mean"] = np.mean(ave_samples, axis=0)
+            plug_in_soc_group[group]["std"] = np.std(ave_samples, axis=0)
 
         metric = "EV state of charge"
         fig_soc = distributions(
@@ -214,25 +220,75 @@ def callbacks(app):
         )
 
         # count in bins of 1 hour the plug in times
-        plug_in_times = []
+        plug_in_times, plug_in_times_upper, plug_in_times_lower = [], [], []
         for group in USER_GROUPS:
-            plug_in_times.extend(plug_in_times_group[group])
-        s_plug_in = pd.Series(plug_in_times)
+            plug_in_times.extend(plug_in_times_group[group]["mean"])
+            plug_in_times_upper.extend(
+                plug_in_times_group[group]["mean"] + plug_in_times_group[group]["std"]
+            )
+            plug_in_times_lower.extend(
+                plug_in_times_group[group]["mean"] - plug_in_times_group[group]["std"]
+            )
         s_plug_in_count = (
-            s_plug_in.value_counts(bins=range(0, 25)).sort_index().cumsum()
+            pd.Series(plug_in_times)
+            .value_counts(bins=range(0, 25))
+            .sort_index()
+            .cumsum()
+        )
+        s_plug_in_count_upper = (
+            pd.Series(plug_in_times_upper)
+            .value_counts(bins=range(0, 25))
+            .sort_index()
+            .cumsum()
+        )
+        s_plug_in_count_lower = (
+            pd.Series(plug_in_times_lower)
+            .value_counts(bins=range(0, 25))
+            .sort_index()
+            .cumsum()
         )
 
         # count in bins of 1 hour the plug out times
-        plug_out_times = []
+        plug_out_times, plug_out_times_upper, plug_out_times_lower = [], [], []
         for group in USER_GROUPS:
-            plug_out_times.extend(plug_out_times_group[group])
-        s_plug_out = pd.Series(plug_out_times)
+            plug_out_times.extend(plug_out_times_group[group]["mean"])
+            plug_out_times_upper.extend(
+                plug_out_times_group[group]["mean"] + plug_out_times_group[group]["std"]
+            )
+            plug_out_times_lower.extend(
+                plug_out_times_group[group]["mean"] - plug_out_times_group[group]["std"]
+            )
+
         s_plug_out_count = (
-            s_plug_out.value_counts(bins=range(0, 25)).sort_index().cumsum()
+            pd.Series(plug_out_times)
+            .value_counts(bins=range(0, 25))
+            .sort_index()
+            .cumsum()
         )
+        s_plug_out_count_upper = (
+            pd.Series(plug_out_times_upper)
+            .value_counts(bins=range(0, 25))
+            .sort_index()
+            .cumsum()
+        )
+        s_plug_out_count_lower = (
+            pd.Series(plug_out_times_lower)
+            .value_counts(bins=range(0, 25))
+            .sort_index()
+            .cumsum()
+        )
+
         # in each bin, take the number plugged in minus the number plugged out
         s_plug_in_out_count = no_of_users - (s_plug_out_count - s_plug_in_count)
+        s_plug_in_out_count_upper = no_of_users - (
+            s_plug_out_count_upper - s_plug_in_count_lower
+        )
+        s_plug_in_out_count_lower = no_of_users - (
+            s_plug_out_count_lower - s_plug_in_count_upper
+        )
 
-        fig_plug_in_out = aggregate(s_plug_in_out_count)
+        fig_plug_in_out = aggregate(
+            s_plug_in_out_count, s_plug_in_out_count_upper, s_plug_in_out_count_lower
+        )
 
         return fig_pi, fig_po, fig_soc, fig_plug_in_out

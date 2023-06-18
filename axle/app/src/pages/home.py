@@ -7,7 +7,7 @@ import plotly.graph_objects as go
 
 
 register_page(__name__, path="/")
-# require_login(__name__)
+require_login(__name__)
 
 
 def layout():
