@@ -366,7 +366,6 @@ def callbacks(app):
                     soc_lower
                 ) - np.std(soc_lower)
 
-        print(soc_bins)
         soc_bins = soc_bins.sort_index()
         fig_plug_in_out = aggregate(
             s_plug_in_out_count,
