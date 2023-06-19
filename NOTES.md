@@ -38,7 +38,7 @@ In the interest of time, we can assume the following from the above distribution
 
 ## Types of User
 
-| # | Name                        | % of population | Miles/yr | Battery (kWh) | Efficiency (mi/kWh) | Plug-in frequency (per day) | Charger kW | Plug-in time | Plug-out time | Target SoC | kWh/year | kWh/plug-in | Plug-in SoC (MEDIUM) | SoC requirement | Charging duration (hrs) |
+| # | Name                        | % of population | Miles/yr | Battery (kWh) | Efficiency (mi/kWh) | Plug-in frequency (per day) | Charger kW | Plug-in time | Plug-out time | Target SoC | kWh/year | kWh/plug-in | Plug-in SoC | SoC requirement | Charging duration (hrs) |
 | - | --------------------------- | --------------- | -------- | ------------- | ------------------- | --------------------------- | ---------- | ------------ | ------------- | ---------- | -------- | ----------- | ----------- | --------------- | ----------------------- |
 | 1 | Average (UK)                | 40              | 9435     | 60            | 3.5                 | 1                           | 7          | 6:00 PM      | 7:00 AM       | 80%        | 2696     | 7           | 68%         | 12%             | 1                       |
 | 2 | Intelligent Octopus average | 30              | 28105    | 72.5          | 3.5                 | 1                           | 7          | 6:00 PM      | 7:00 AM       | 80%        | 8030     | 22          | 52%         | 28%             | 2.5                     |
