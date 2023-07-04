@@ -11,7 +11,7 @@ class Settings(BaseSettings):
 
     # TODO: this should be a secret
     VALID_USERNAME_PASSWORD_PAIRS = {
-        "tommy": "axleenergy1234",
+        "tommy": "evsim1234",
     }
 
     # set VERSION to default value

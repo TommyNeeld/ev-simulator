@@ -1,6 +1,6 @@
 # EV Driver Behavior
 
-Build a simulator of EV driver behaviour.
+Build an simulator of EV driver behaviour.
 
 ## Details
 
@@ -27,7 +27,7 @@ The distribution of plug-in SoC is shown below:
 These distributions can act as a probability density functions (PDFs) and modelling the user behaviour can be done by sampling from these distributions. Using a randomly generated number between 0 and 1, we can sample from the Cumulative Density Function (CDF) to get a plug-in/out time or plug-in SoC - this is a type of Monte Carlo Simulation known as [Inverse Transform Sampling](https://towardsdatascience.com/understanding-monte-carlo-simulation-eceb4c9cad4). [References](#references) [5-6] use this method to model EV charging behavior.
 
 General approach:
-<img src="assets/imgs/axle-approach.png" alt="General approach" width="500"/>
+<img src="assets/imgs/ev_sim-approach.png" alt="General approach" width="500"/>
 
 #### Assumptions
 

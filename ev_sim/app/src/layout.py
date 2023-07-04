@@ -41,7 +41,7 @@ def _get_app_header():
                     [
                         dbc.Col(
                             html.Img(
-                                src="https://axle.energy/static/images/logo-monochrome%20white.png",
+                                src="/assets/ev_sim_logo.png",
                                 height="36px",
                             ),
                             width="auto",
@@ -52,7 +52,7 @@ def _get_app_header():
                         ),
                         dbc.Col(
                             dbc.NavbarBrand(
-                                "AXLE EV SIMULATOR",
+                                "EV SIMULATOR",
                                 style={
                                     "fontWeight": "bold",
                                     "paddingLeft": "20px",

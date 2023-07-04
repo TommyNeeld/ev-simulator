@@ -1,4 +1,4 @@
-# axle Assessment Dashboard
+# Simulation Dashboard
 
 
 ## Running the App locally
@@ -7,7 +7,7 @@ Install `requirements.txt` in chosen virtual environment. In the `src` directory
 
 ## Running the App in Docker
 
-Build the image with `docker build -t axle-app -f Dockerfile ../..` and run with `docker run -p 8050:8050 axle-app`. Navigate to http://127.0.0.1:8050/
+Build the image with `docker build -t ev_sim-app -f Dockerfile ../..` and run with `docker run -p 8050:8050 ev_sim-app`. Navigate to http://127.0.0.1:8050/
 
 
 ## Deploying the App to AWS

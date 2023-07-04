@@ -303,6 +303,7 @@ def callbacks(app):
             plug_in_soc, group_labels, metric, domain, show_hist=False, show_curve=True
         )
 
+        # aggregate the results
         (
             s_plug_in_out_count,
             s_plug_in_out_count_upper,

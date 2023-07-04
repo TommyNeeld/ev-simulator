@@ -1,4 +1,4 @@
--r axle/app/requirements.txt
+-r ev_sim/app/requirements.txt
 seaborn
 numpy
 ipykernel

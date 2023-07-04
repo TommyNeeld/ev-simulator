@@ -1,5 +1,5 @@
 """
-dash app for Axle EV simulator
+dash app for  EV simulator
 auth using multi-page flask login - https://github.com/AnnMarieW/dash-multi-page-app-demos/tree/main/multi_page_flask_login
 """
 from flask import Flask, request, redirect, session
@@ -44,7 +44,7 @@ def login_button_click():
 app = Dash(
     __name__,
     server=server,
-    title="Axle EV Simulator",
+    title="EV Simulator",
     external_stylesheets=[dbc.themes.DARKLY, settings.CUSTOM_CSS],
     use_pages=True,
     suppress_callback_exceptions=True,

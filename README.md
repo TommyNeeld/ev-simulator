@@ -1,10 +1,10 @@
 # EV Plug-in Simulator
 
-Electrical Vehicle Plug-in Simulation for Axle Energy
+Electrical Vehicle Plug-in and State of Charge Simulator.
 
 ## App
 
-See `axle/app/README.md` for instructions on running the app locally or in Docker. Currently hosted on AWS App Runner at https://vmkgpmrfme.eu-west-1.awsapprunner.com/
+See `ev_sim/app/README.md` for instructions on running the app locally or in Docker.
 
 ## Analysis
 
