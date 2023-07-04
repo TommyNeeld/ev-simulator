@@ -2,15 +2,7 @@
 
 Build an simulator of EV driver behaviour.
 
-## Details
-
-The simulator should be able to return:
-- when somebody is plugged in
-- the state of charge of the battery when they plug in
-- it should be “agent-based” in the sense that it allows for modelling of individual user behaviour
-- we should be able to use the simulator to recapitulate population-level observations. This might look like a script which runs the simulator with a bunch of preset parameters, for instance representing different archetypes of user behaviour (e.g. the “commute every day” vs. “mostly long trips at weekends”)
-
-### Thoughts ...
+## Thoughts ...
 
 The focus here is on predicting when a user will be plugged in and the state of the battery when they are plugged in. In the table in section [Types of User](#types-of-user), the majority user-type is 'Average (UK)', this user type has an average plug-in time of 6pm & plug-out time of 7am with an average plug-in SoC of 68%. On a 7 kW charger, this would take 1 hour to charge to 80% SoC or 2.7 hours to charge to 100% SoC assuming a linear charging rate.
 
@@ -29,7 +21,7 @@ These distributions can act as a probability density functions (PDFs) and modell
 General approach:
 <img src="assets/imgs/ev_sim-approach.png" alt="General approach" width="500"/>
 
-#### Assumptions
+### Assumptions
 
 In the interest of time, we can assume the following from the above distributions.
 
